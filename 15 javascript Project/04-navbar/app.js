@@ -8,6 +8,6 @@ const navToggle = document.querySelector(".nav-toggle");
 const links = document.querySelector(".links");
 
 navToggle.addEventListener("click", function () {
-  // console.log(links.classList);
-  links.classList.contains("show-links");
+  console.log(links.classList); // Log the class list to the console
+  links.classList.toggle("show-links"); // Toggle the menu visibility
 });
