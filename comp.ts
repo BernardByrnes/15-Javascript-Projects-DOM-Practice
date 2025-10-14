@@ -15,9 +15,9 @@ class AMDProcessor implements Processor {
   }
 }
 
-class MydliaProcessor implements Processor {
+class NvidiaProcessor implements Processor {
   getProcessorDescription(): string {
-    return "Mydlia Processor";
+    return "Nvidia Processor";
   }
 }
 
@@ -88,16 +88,16 @@ function demonstrateComputers(): void {
   // Create processors
   const intel = new IntelProcessor();
   const amd = new AMDProcessor();
-  const mydlia = new MydliaProcessor();
+  const Nvidia = new NvidiaProcessor();
 
   // Create computer combinations using the Bridge Pattern
   const computers = [
     new DellComputer(intel),
     new DellComputer(amd),
     new HPComputer(intel),
-    new HPComputer(mydlia),
+    new HPComputer(Nvidia),
     new LenovoComputer(amd),
-    new LenovoComputer(mydlia),
+    new LenovoComputer(Nvidia),
     new IBMComputer(intel),
     new IBMComputer(amd),
   ];

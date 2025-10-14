@@ -1,0 +1,67 @@
+classDiagram
+    %% DECORATOR PATTERN
+    class Notifier {
+        <<interface>>
+        +send(message: string) void
+    }
+    
+    class EmailNotifier {
+        +send(message: string) void
+    }
+    
+    class NotifierDecorator {
+        #wrappee: Notifier
+        +NotifierDecorator(wrappee: Notifier)
+        +send(message: string) void
+    }
+    
+    class SMSNotifier {
+        +send(message: string) void
+    }
+    
+    class SlackNotifier {
+        +send(message: string) void
+    }
+    
+    Notifier <|.. EmailNotifier : implements
+    Notifier <|.. NotifierDecorator : implements
+    NotifierDecorator <|-- SMSNotifier : extends
+    NotifierDecorator <|-- SlackNotifier : extends
+    NotifierDecorator o-- Notifier : wraps
+    
+    %% BRIDGE PATTERN
+    class Device {
+        <<interface>>
+        +powerOn() void
+        +powerOff() void
+    }
+    
+    class TV {
+        +powerOn() void
+        +powerOff() void
+    }
+    
+    class Radio {
+        +powerOn() void
+        +powerOff() void
+    }
+    
+    class RemoteControl {
+        #device: Device
+        +RemoteControl(device: Device)
+        +turnOn() void
+        +turnOff() void
+    }
+    
+    class AdvancedRemote {
+        +mute() void
+    }
+    
+    Device <|.. TV : implements
+    Device <|.. Radio : implements
+    RemoteControl o-- Device : uses
+    RemoteControl <|-- AdvancedRemote : extends
+    
+    note for Notifier "DECORATOR PATTERN\nAdds functionality dynamically\nby wrapping objects"
+    
+    note for Device "BRIDGE PATTERN\nSeparates abstraction from\nimplementation"
